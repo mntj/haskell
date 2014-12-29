@@ -75,6 +75,7 @@ product [1,2,3,4]
 10 `elem` [3,4,5,6]
 -- False
 
+
 -- Ranges
 
 [1..20]
@@ -82,3 +83,43 @@ product [1,2,3,4]
 
 ['a'..'z']
 -- "abcdefghijklmnopqrstuvwxyz"
+
+['K'..'Z']
+-- "KLMNOPQRSTUVWXYZ"
+
+[2,4..20]
+-- [2,4,6,8,10,12,14,16,18,20]
+
+[3,6..20]
+-- [3,6,9,12,15,18]
+
+
+-- Functions that produce infinite lists
+
+take 10 (cycle [1,2,3])
+-- [1,2,3,1,2,3,1,2,3,1]
+
+take 12 (cycle "LOL ")
+-- "LOL LOL LOL "
+
+take 10 (repeat 5)
+-- [5,5,5,5,5,5,5,5,5,5]
+
+replicate 3 10
+-- [10,10,10]
+
+
+-- List Comprehensions
+
+[x * 2 | x <- [1..10]]
+-- [2,4,6,8,10,12,14,16,18,20]
+
+[x * 2 | x <- [1..10], x * 2 >= 12]
+-- [12,14,16,18,20]
+
+[x | x <- [50..100], x `mod` 7 == 3]
+-- [52,59,66,73,80,87,94]
+
+boomBangs xs = [ if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x]
+boomBangs [7..13]
+-- ["BOOM!","BOOM!","BANG!","BANG!"]
